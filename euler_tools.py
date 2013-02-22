@@ -44,6 +44,18 @@ def prime_sieve(max_value=10**6):
         m = 2 * i + 3
     return [2] + [x for x in s if x]
 
+
+def phi_sieve(max_value=10**6):
+    phis = range(max_value + 1)
+    i = 2
+    while i <= max_value:
+        if phis[i] == i:
+            for j in range(i, max_value + 1, i):
+                phis[j] = phis[j] / i * (i - 1)
+        i += 1
+    return phis
+
+
 def is_palindrome(item):
     s = str(item)
     half = len(s) / 2
@@ -51,6 +63,7 @@ def is_palindrome(item):
         if s[i] != s[(i + 1) * -1]:
             return False
     return True
+
 
 def is_sqr(x):
     if x < 0:
